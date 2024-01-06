@@ -1,0 +1,26 @@
+.GameSection  {
+  width: 19rem;
+  height: 40rem;
+  position: relative;
+  border-radius: 43px;
+  padding: 0 1.8rem;
+  left: 35rem;
+  color: #ffffff;
+  gap: 1rem;
+  margin-top: 2.8rem;
+  background-color: #192a32;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  color: antiquewhite;
+}
+.kids {
+  width: 86px;
+  height: 86px;
+  background-color: #ffffff;
+}
