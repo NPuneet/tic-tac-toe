@@ -16,7 +16,7 @@ const GameSection = () => {
             <div>
               <img src={inzero} alt="" />
             </div>
-            <div className={css.text}> TURN</div>
+            <div className={css}> TURN</div>
           </div>
         </div>
         <div className={css.kids}></div>

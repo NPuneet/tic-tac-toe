@@ -21,7 +21,7 @@ const copyUrl = () => {
 const GameCard = () => {
   const [selected, setSelected] = useState(null);
   const [showGame, setShowGame] = useState(false);
-  return <GameSection /> ? (
+  return showGame ? (
     <GameSection />
   ) : (
     <>
