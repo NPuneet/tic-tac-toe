@@ -1,4 +1,4 @@
-.GameSection  {
+.GameSection {
   width: 19rem;
   height: 40rem;
   position: relative;
@@ -6,7 +6,7 @@
   padding: 0 1.8rem;
   left: 35rem;
   color: #ffffff;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 2.8rem;
   background-color: #192a32;
   display: flex;
@@ -16,11 +16,49 @@
   align-items: center;
   justify-content: center;
 }
-h1 {
-  color: antiquewhite;
-}
+
 .kids {
-  width: 86px;
-  height: 86px;
-  background-color: #ffffff;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: #1F3540;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.top {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  gap: 1.4rem;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1.5rem;
+  margin-bottom: .3rem;
+}
+.turn  {
+  width: 90px;
+  height: 40px;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #1F3540;
+  border-radius: 10px;
+/* background: #1F3540; */
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.img{
+  display: flex;
+  gap: .5rem;
+}
+.text{
+  color: #A8BEC9;
+font-family: DM Sans;
+font-size: 12px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
 }
