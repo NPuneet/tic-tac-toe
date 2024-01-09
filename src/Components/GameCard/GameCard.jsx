@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import css from "../GameCard/GameCard.module.css";
-import cross from "../../assets/cross.svg";
-import zero from "../../assets/zero.svg";
+import X from "../../assets/cross.svg";
+import O from "../../assets/zero.svg";
 import inzero from "../../assets/inzero.svg";
 import incross from "../../assets/incross.svg";
 import { toast, ToastContainer } from "react-toastify";
@@ -22,13 +22,13 @@ const GameCard = () => {
   const [selected, setSelected] = useState(null);
   const [showGame, setShowGame] = useState(false);
   return showGame ? (
-    <GameSection />
+    <GameSection selected={selected}/>
   ) : (
     <>
       <div className={css.heroCard}>
         <div className={css.top}>
-          <img src={cross} />
-          <img src={zero} />
+          <img src={X} />
+          <img src={O} />
         </div>
         <div className={css.selectUser}>
           <div>
@@ -37,22 +37,20 @@ const GameCard = () => {
           <div className={css.choice}>
             <button
               className={`${css.choice1} ${
-                selected === "choice1" ? css.selected : ""
+                selected === "cross" ? css.selected : ""
               } `}
-              // disabled={selected === "choice1"}
               onClick={() => {
-                setSelected("choice1");
+                setSelected("cross");
               }}
             >
               <img src={incross} />
             </button>
             <button
               className={`${css.choice2} ${
-                selected === "choice2" ? css.selected : ""
+                selected === "zero" ? css.selected : ""
               } `}
-              // disabled={selected === "choice2"}
               onClick={() => {
-                setSelected("choice2");
+                setSelected("zero");
               }}
             >
               <img src={inzero} />

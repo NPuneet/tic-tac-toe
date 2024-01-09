@@ -15,7 +15,7 @@ const useFetchdata = () => {
         throw new Error("Network response was not ok");
       }
       const json = await data.json();
-      console.log(json.slip.advice);
+      // console.log(json);
       seta(json.slip.advice);
       setb(json.slip.id);
     } catch (error) {
