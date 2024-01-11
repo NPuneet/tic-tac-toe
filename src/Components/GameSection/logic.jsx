@@ -7,21 +7,75 @@ import cross from "../../assets/incross.svg";
 import refresh from "../../assets/refresh.svg";
 let arr = [null, null, null, null, null, null, null, null, null];
 const GameSection = ({ selected }) => {
+  useEffect(() => {
+    savePlayerChoice(selected);
+    setPlayerTurn(selected);
+  }, [selected]);
   const [active, setActive] = useState(false);
   const [squares, setSquares] = useState(arr);
   const [playerTurn, setPlayerTurn] = useState(selected);
 
+  const savePlayerChoice = (selected) => {
+    localStorage.setItem("playerChoice", selected);
+  };
+  const checkWinningMoves = (squares, playerTurn) => {
+
+    const winPatterns = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8], // Rows
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8], // Columns
+      [0, 4, 8],
+      [2, 4, 6], // Diagonals
+    ];
+
+    for (const pattern of winPatterns) {
+      const [a, b, c] = pattern;
+      if (
+        squares[a] === playerTurn &&
+        squares[a] === squares[b] &&
+        squares[c] === null
+      ) {
+        return c;
+      } else if (
+        squares[b] === playerTurn &&
+        squares[b] === squares[c] &&
+        squares[a] === null
+      ) {
+        return a;
+      } else if (
+        squares[a] === playerTurn &&
+        squares[a] === squares[c] &&
+        squares[b] === null
+      ) {
+        return b;
+      }
+    }
+    return null;
+  };
+
   const handleClick = (index) => {
-    if (squares[index] === null) {
-      setSquares((prevSquares) => {
-        const newSquares = [...prevSquares];
-        newSquares[index] = playerTurn;
-        return newSquares;
-      });
-      setPlayerTurn(playerTurn === "cross" ? "zero" : "cross");
-      setTimeout(computerTurn, 2000);
+    if (playerTurn && squares[index] === null) {
+      squares[index] = playerTurn;
+      const blockMoveIndex = checkWinningMoves(
+        squares,
+        playerTurn === "cross" ? "zero" : "cross"
+      );
+
+      if (blockMoveIndex !== null) {
+        squares[blockMoveIndex] = playerTurn === "cross" ? "zero" : "cross";
+        setSquares([...squares]); 
+        setPlayerTurn(playerTurn === "cross" ? "zero" : "cross");
+      } else {
+        setSquares([...squares]); 
+        setPlayerTurn(playerTurn === "cross" ? "zero" : "cross");
+        setTimeout(computerTurn, 2000);
+      }
     }
   };
+
   const renderTurnImage = () => {
     if (playerTurn === "cross") {
       return <img src={cross} alt="Cross" />;
@@ -30,21 +84,18 @@ const GameSection = ({ selected }) => {
     }
   };
   const computerTurn = () => {
-    setSquares((prevSquares) => {
-      const squaresCopy = [...prevSquares];
-      const availableSquares = squaresCopy
-        .map((square, index) => (square === null ? index : null))
-        .filter((index) => index !== null);
+    const squaresCopy = [...squares];
+    const availableSquares = squaresCopy
+      .map((square, index) => (square === null ? index : null))
+      .filter((index) => index !== null);
 
-      if (availableSquares.length > 0) {
-        const randomIndex =
-          availableSquares[Math.floor(Math.random() * availableSquares.length)];
-        squaresCopy[randomIndex] = playerTurn === "cross" ? "zero" : "cross";
-        setPlayerTurn(playerTurn);
-      }
-
-      return squaresCopy;
-    });
+    if (availableSquares.length > 0) {
+      const randomIndex =
+        availableSquares[Math.floor(Math.random() * availableSquares.length)];
+      squaresCopy[randomIndex] = playerTurn === "cross" ? "zero" : "cross";
+      setSquares(squaresCopy);
+      setPlayerTurn(playerTurn === "cross" ? "zero" : "cross");
+    }
   };
   return (
     <>
